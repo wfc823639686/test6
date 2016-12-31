@@ -3,9 +3,9 @@ package com.wfc.test6;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.wfc.test4.dao.DaoMaster;
-import com.wfc.test4.dao.DaoSession;
-import com.wfc.test4.dao.UserDao;
+import com.wfc.test6.dao.DaoMaster;
+import com.wfc.test6.dao.DaoSession;
+import com.wfc.test6.dao.UserDao;
 
 import de.greenrobot.dao.query.QueryBuilder;
 

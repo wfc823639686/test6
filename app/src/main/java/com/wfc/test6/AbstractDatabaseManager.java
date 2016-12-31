@@ -7,8 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
-import com.wfc.test4.dao.DaoMaster;
-import com.wfc.test4.dao.DaoSession;
+import com.wfc.test6.dao.DaoMaster;
+import com.wfc.test6.dao.DaoSession;
 
 import java.util.Collection;
 import java.util.List;

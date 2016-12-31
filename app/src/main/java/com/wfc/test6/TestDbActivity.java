@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.gson.Gson;
-import com.wfc.test4.bean.Enterprise;
-import com.wfc.test4.bean.User;
+import com.wfc.test6.bean.Enterprise;
+import com.wfc.test6.bean.User;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 

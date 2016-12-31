@@ -4,8 +4,8 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.wfc.test4.R;
-import com.wfc.test4.bean.JobModel;
+import com.wfc.test6.R;
+import com.wfc.test6.bean.JobModel;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 

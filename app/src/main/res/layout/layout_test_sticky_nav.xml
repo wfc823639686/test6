@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.wfc.test6.StickyNavLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:background="@color/colorAccent"
+            android:id="@+id/id_stickynavlayout_topview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+        </RelativeLayout>
+
+        <View
+            android:background="@color/colorPrimaryDark"
+            android:id="@+id/id_stickynavlayout_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="48dp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:background="@color/colorPrimary"
+            android:id="@+id/id_stickynavlayout_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </com.wfc.test6.StickyNavLayout>
+
+</LinearLayout>

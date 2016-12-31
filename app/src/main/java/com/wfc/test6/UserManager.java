@@ -1,6 +1,6 @@
 package com.wfc.test6;
 
-import com.wfc.test4.bean.User;
+import com.wfc.test6.bean.User;
 
 import de.greenrobot.dao.AbstractDao;
 

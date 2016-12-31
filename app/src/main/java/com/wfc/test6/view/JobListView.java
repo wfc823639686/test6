@@ -1,7 +1,7 @@
 package com.wfc.test6.view;
 
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
-import com.wfc.test4.bean.JobListResult;
+import com.wfc.test6.bean.JobListResult;
 
 import java.util.Map;
 

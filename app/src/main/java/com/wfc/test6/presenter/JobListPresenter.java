@@ -1,9 +1,9 @@
 package com.wfc.test6.presenter;
 
 import com.hannesdorfmann.mosby.mvp.rx.lce.MvpLceRxPresenter;
-import com.wfc.test4.api.JobApi;
-import com.wfc.test4.bean.JobListResult;
-import com.wfc.test4.view.JobListView;
+import com.wfc.test6.api.JobApi;
+import com.wfc.test6.bean.JobListResult;
+import com.wfc.test6.view.JobListView;
 
 /**
  * Created by wangfengchen on 2016/12/31.

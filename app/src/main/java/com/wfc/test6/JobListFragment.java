@@ -11,13 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.wfc.test4.adapter.JobListAdapter;
-import com.wfc.test4.base.BaseLceFragment;
-import com.wfc.test4.bean.JobListResult;
-import com.wfc.test4.bean.JobModel;
-import com.wfc.test4.presenter.JobListPresenter;
-import com.wfc.test4.ui.recyclerview.LoadMoreWrapper;
-import com.wfc.test4.view.JobListView;
+import com.wfc.test6.adapter.JobListAdapter;
+import com.wfc.test6.base.BaseLceFragment;
+import com.wfc.test6.bean.JobListResult;
+import com.wfc.test6.bean.JobModel;
+import com.wfc.test6.presenter.JobListPresenter;
+import com.wfc.test6.recyclerview.LoadMoreWrapper;
+import com.wfc.test6.view.JobListView;
 import com.zhy.adapter.recyclerview.wrapper.HeaderAndFooterWrapper;
 
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package com.wfc.test6.api;
 
-import com.wfc.test4.bean.EnterpriseResult;
+import com.wfc.test6.bean.EnterpriseResult;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;

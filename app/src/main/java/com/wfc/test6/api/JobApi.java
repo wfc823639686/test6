@@ -1,6 +1,6 @@
 package com.wfc.test6.api;
 
-import com.wfc.test4.bean.JobListResult;
+import com.wfc.test6.bean.JobListResult;
 
 import java.util.Map;
 
