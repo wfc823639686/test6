@@ -1,5 +1,7 @@
 package com.wfc.test6.api;
 
+import com.wfc.test6.bean.CommentsResult;
+import com.wfc.test6.bean.JobInfoResult;
 import com.wfc.test6.bean.JobListResult;
 
 import java.util.Map;
@@ -22,6 +24,12 @@ public class JobApi extends BaseApi {
         @GET("api/job/getJobs.htm")
         Observable<JobListResult> getJobList(@QueryMap Map<String, String> map);
 
+        @GET("api/job/getInfo.htm")
+        Observable<JobInfoResult> getJobInfo(@QueryMap Map<String, String> map);
+
+        @GET("api/enterprise/getComments.htm")
+        Observable<CommentsResult> getComments(@QueryMap Map<String, String> map);
+
 
         //POST方法没有缓存，适用于更新数据
 //        @FormUrlEncoded
@@ -33,6 +41,14 @@ public class JobApi extends BaseApi {
 
     public static Observable<JobListResult> getJobList(Map<String, String> map){
         return service.getJobList(map);
+    }
+
+    public static Observable<JobInfoResult> getJobInfo(Map<String, String> map){
+        return service.getJobInfo(map);
+    }
+
+    public static Observable<CommentsResult> getComments(Map<String, String> map){
+        return service.getComments(map);
     }
 
 }

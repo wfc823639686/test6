@@ -64,15 +64,19 @@ public class JobListFragment
             @Override
             public void onLoadMore() {
                 Log.e(TAG, "onLoadMore");
-                getPresenter().getData();
+                loadData(false);
             }
         });
         mRecyclerView = (RecyclerView) view.findViewById(R.id.job_list_recycler);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mLoadMoreWrapper);
         mRecyclerView.setHasFixedSize(true);
-        getPresenter().getData();
-        contentView.setRefreshing(true);
+        loadData(true);
+    }
+
+    @Override
+    protected String getErrorMessage(Throwable e, boolean pullToRefresh) {
+        return null;
     }
 
     @NonNull
@@ -93,6 +97,11 @@ public class JobListFragment
     }
 
     @Override
+    public void loadData(boolean pullToRefresh) {
+        getPresenter().getData();
+    }
+
+    @Override
     public void showError(Throwable e, boolean pullToRefresh) {
         super.showError(e, pullToRefresh);
         Log.e(TAG, "error");
@@ -101,7 +110,7 @@ public class JobListFragment
 
     @Override
     public void onRefresh() {
-        getPresenter().getData();
+        loadData(true);
     }
 
     @Override
