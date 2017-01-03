@@ -3,10 +3,15 @@ package com.wfc.test6.api;
 import com.wfc.test6.bean.CommentsResult;
 import com.wfc.test6.bean.JobInfoResult;
 import com.wfc.test6.bean.JobListResult;
+import com.wfc.test6.bean.Result;
 
 import java.util.Map;
 
+import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
 import rx.Observable;
 
@@ -30,6 +35,10 @@ public class JobApi extends BaseApi {
         @GET("api/enterprise/getComments.htm")
         Observable<CommentsResult> getComments(@QueryMap Map<String, String> map);
 
+        @POST("api/job/update.htm")
+        @FormUrlEncoded
+        Observable<Result> postJob(@FieldMap Map<String, String> map);
+
 
         //POST方法没有缓存，适用于更新数据
 //        @FormUrlEncoded
@@ -51,4 +60,7 @@ public class JobApi extends BaseApi {
         return service.getComments(map);
     }
 
+    public static Observable<Result> postJob(Map<String, String> map) {
+        return service.postJob(map);
+    }
 }

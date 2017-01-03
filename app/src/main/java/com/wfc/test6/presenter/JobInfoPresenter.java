@@ -58,4 +58,13 @@ public class JobInfoPresenter extends MvpLceRxPresenter<JobInfoView, JobInfoResu
             });
         }
     }
+
+    @Override
+    public void detachView(boolean retainInstance) {
+        super.detachView(retainInstance);
+        if(!retainInstance) {
+            commentsSubs.unsubscribe();
+        }
+    }
+
 }
