@@ -1,20 +1,24 @@
 package com.wfc.test6.presenter;
 
+import android.util.Log;
+
 import com.hannesdorfmann.mosby.mvp.rx.lce.MvpLceRxPresenter;
+import com.wfc.test6.bean.Job;
+import com.wfc.test6.dao.DbManager;
+import com.wfc.test6.dao.EnterpriseManager;
 import com.wfc.test6.api.JobApi;
 import com.wfc.test6.bean.CommentsResult;
 import com.wfc.test6.bean.JobInfoResult;
-import com.wfc.test6.bean.JobListResult;
+import com.wfc.test6.dao.JobManager;
 import com.wfc.test6.view.JobInfoView;
-import com.wfc.test6.view.JobListView;
 
 import java.util.Map;
 
 import rx.Observable;
-import rx.Scheduler;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -23,13 +27,14 @@ import rx.schedulers.Schedulers;
 
 public class JobInfoPresenter extends MvpLceRxPresenter<JobInfoView, JobInfoResult> {
 
+    private static final String TAG = "JobInfoPresenter";
     private Subscription commentsSubs;
 
-    public void getData() {
+    public void getData(boolean pullToRefresh) {
         if(isViewAttached()) {
             Map<String, String> params = getView().params();
             Observable<JobInfoResult> observable = JobApi.getJobInfo(params);
-            subscribe(observable, false);
+            subscribe(observable, pullToRefresh);
         }
     }
 
@@ -60,9 +65,22 @@ public class JobInfoPresenter extends MvpLceRxPresenter<JobInfoView, JobInfoResu
     }
 
     @Override
+    protected void onNext(JobInfoResult data) {
+        super.onNext(data);
+        Log.d(TAG, "onNext");
+        JobManager manager = DbManager.get(JobManager.class);
+        Job job = new Job();
+        job.setJobName(data.detail.jobName);
+        job.setId((long) data.detail.id);
+        manager.insert(job);
+    }
+
+    @Override
     public void detachView(boolean retainInstance) {
         super.detachView(retainInstance);
-        if(!retainInstance) {
+        if(!retainInstance
+                && commentsSubs!=null
+                && commentsSubs.isUnsubscribed()) {
             commentsSubs.unsubscribe();
         }
     }

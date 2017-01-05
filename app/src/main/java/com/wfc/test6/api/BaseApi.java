@@ -12,8 +12,8 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 abstract class BaseApi {
-//    private static final String API_SERVER = "http://apitest.shangshaban.com";
-    private static final String API_SERVER = "http://192.168.1.30:8080";
+    private static final String API_SERVER = "http://apitest.shangshaban.com";
+//    private static final String API_SERVER = "http://192.168.1.30:8080";
     private static Retrofit mRetrofit;
     private static HttpLoggingInterceptor httpLoggingInterceptor;
     static {

@@ -2,6 +2,7 @@ package com.wfc.test6;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -11,8 +12,11 @@ import com.hannesdorfmann.mosby.mvp.viewstate.lce.LceViewState;
 import com.wfc.test6.api.JobApi;
 import com.wfc.test6.base.BaseLceActivity;
 import com.wfc.test6.bean.CommentsResult;
+import com.wfc.test6.bean.Job;
 import com.wfc.test6.bean.JobInfoResult;
 import com.wfc.test6.bean.Result;
+import com.wfc.test6.dao.DbManager;
+import com.wfc.test6.dao.JobManager;
 import com.wfc.test6.presenter.JobInfoPresenter;
 import com.wfc.test6.view.JobInfoView;
 
@@ -21,6 +25,7 @@ import java.util.Map;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -29,13 +34,14 @@ import rx.schedulers.Schedulers;
  */
 
 public class JobInfoActivity
-        extends BaseLceActivity<View, JobInfoResult, JobInfoView, JobInfoPresenter>
-        implements JobInfoView, View.OnClickListener {
+        extends BaseLceActivity<SwipeRefreshLayout, JobInfoResult, JobInfoView, JobInfoPresenter>
+        implements JobInfoView, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private static final String TAG = "JobInfoActivity";
     private String id;
     private TextView nameTv;
     private Button btn;
+    Subscription postSubs;
 
     private Map<String, String> commentsParams = new LinkedHashMap<>();
 
@@ -46,8 +52,9 @@ public class JobInfoActivity
         id = "3";
         nameTv = (TextView) findViewById(R.id.job_info_name);
         btn = (Button) findViewById(R.id.job_info_post_btn);
+        contentView.setOnRefreshListener(this);
         btn.setOnClickListener(this);
-        loadData(false);
+        loadData(true);
 
     }
 
@@ -66,11 +73,12 @@ public class JobInfoActivity
     public void setData(JobInfoResult data) {
         Log.d(TAG, "data " + data.detail.jobName);
         nameTv.setText(data.detail.jobName);
+        contentView.setRefreshing(false);
     }
 
     @Override
     public void loadData(boolean pullToRefresh) {
-        getPresenter().getData();
+        getPresenter().getData(pullToRefresh);
         getPresenter().getComments();
     }
 
@@ -99,18 +107,19 @@ public class JobInfoActivity
         map.put("id", "3");
         map.put("jobName", "23424");
         Observable<Result> observable = JobApi.postJob(map);
-        observable
+        postSubs = observable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Result>() {
             @Override
             public void onCompleted() {
-
+                postSubs.unsubscribe();
             }
 
             @Override
             public void onError(Throwable e) {
                 Log.e(TAG, "post error " + e);
+                postSubs.unsubscribe();
             }
 
             @Override
@@ -118,5 +127,10 @@ public class JobInfoActivity
                 Log.e(TAG, "post result " + result.msg);
             }
         });
+    }
+
+    @Override
+    public void onRefresh() {
+        loadData(true);
     }
 }

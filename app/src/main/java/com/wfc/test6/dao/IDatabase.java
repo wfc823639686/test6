@@ -1,4 +1,4 @@
-package com.wfc.test6;
+package com.wfc.test6.dao;
 
 import android.support.annotation.NonNull;
 

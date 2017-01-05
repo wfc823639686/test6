@@ -2,6 +2,8 @@ package com.wfc.test6;
 
 import android.app.Application;
 
+import com.wfc.test6.dao.AbstractDatabaseManager;
+
 import de.greenrobot.dao.query.QueryBuilder;
 
 /**

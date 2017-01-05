@@ -1,4 +1,4 @@
-package com.wfc.test6;
+package com.wfc.test6.dao;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -6,9 +6,6 @@ import android.database.sqlite.SQLiteException;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-
-import com.wfc.test6.dao.DaoMaster;
-import com.wfc.test6.dao.DaoSession;
 
 import java.util.Collection;
 import java.util.List;
